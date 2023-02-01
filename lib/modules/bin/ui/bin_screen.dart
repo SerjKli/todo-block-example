@@ -1,3 +1,6 @@
+import 'package:bloc_test/modules/tasks/block/exports.dart';
+import 'package:bloc_test/modules/tasks/block/tasks_bloc.dart';
+import 'package:bloc_test/modules/tasks/ui/widgets/tasks_list.dart';
 import 'package:bloc_test/widgets/drawer/drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -23,12 +26,16 @@ class BinScreen extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Center(
+         const Center(
             child: Chip(
-              label: Text("Delted"),
+              label: Text("Deleted"),
             ),
           ),
-          // TasksList(tasksList: tasksList),
+          BlocBuilder<TasksBloc, TasksState>(
+            builder: (context, state) {
+              return TasksList(tasksList: state.trashedTasks);
+            },
+          ),
         ],
       ),
     );

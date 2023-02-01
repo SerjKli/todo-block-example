@@ -43,7 +43,10 @@ class AppDrawer extends StatelessWidget {
                   ListTile(
                     leading: const Icon(Icons.delete, color: Colors.white70),
                     title: const Text('Deleted tasks', style: TextStyle(color: Colors.white70)),
-                    trailing: const Text('0', style: TextStyle(color: Colors.white70)),
+                    trailing: Text(
+                      "${state.trashedTasksCount}",
+                      style: const TextStyle(color: Colors.white70),
+                    ),
                     onTap: () {
                       Navigator.of(context).pushNamed(BinScreen.routeName);
                     },

@@ -11,6 +11,7 @@ class TasksBloc extends HydratedBloc<TasksEvent, TasksState> {
     on<AddTask>(_onAddTask);
     on<UpdateTask>(_onUpdateTask);
     on<DeleteTask>(_onDeleteTask);
+    on<RestoreTask>(_onRestoreTask);
   }
 
   void _onAddTask(AddTask event, Emitter<TasksState> emit) {
@@ -41,7 +42,32 @@ class TasksBloc extends HydratedBloc<TasksEvent, TasksState> {
     final state = this.state;
     final task = event.task;
 
-    final List<Task> allTasks = List.from(state.allTasks)..remove(task);
+    List<Task> allTasks = [];
+
+    if (task.isDeleted == true) {
+      // If the task is already deleted, permanently delete the task
+      allTasks = List.from(state.allTasks)..remove(task);
+    } else {
+      // Otherwise, mark the task as deleted
+      allTasks = List.from(state.allTasks);
+      final int index = allTasks.indexOf(task);
+      allTasks.replaceRange(index, index + 1, [task.copyWith(isDeleted: true)]);
+    }
+
+    emit(TasksState(allTasks: allTasks));
+  }
+
+
+  void _onRestoreTask(RestoreTask event, Emitter<TasksState> emit) {
+    final state = this.state;
+    final task = event.task;
+
+    List<Task> allTasks = List.from(state.allTasks);
+
+    final int index = allTasks.indexOf(task);
+
+    final Task newTask = task.copyWith(isDeleted: false);
+    allTasks.replaceRange(index, index + 1, [newTask]);
 
     emit(TasksState(allTasks: allTasks));
   }

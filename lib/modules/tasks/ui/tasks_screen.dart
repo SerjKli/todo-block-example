@@ -23,7 +23,7 @@ class TasksScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<TasksBloc, TasksState>(
       builder: (context, state) {
-        List<Task> tasksList = state.allTasks;
+        List<Task> tasksList = state.activeTasks;
 
         return Scaffold(
           drawer: const AppDrawer(),
