@@ -6,9 +6,15 @@ class AppRouter {
   Route? onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
       case TasksScreen.routeName:
-        return MaterialPageRoute(builder: (context) => const TasksScreen());
+        return MaterialPageRoute(
+          builder: (context) => const TasksScreen(),
+          settings: routeSettings,
+        );
       case BinScreen.routeName:
-        return MaterialPageRoute(builder: (context) => const BinScreen());
+        return MaterialPageRoute(
+          builder: (context) => const BinScreen(),
+          settings: routeSettings,
+        );
       default:
         return MaterialPageRoute(
           builder: (context) => Scaffold(

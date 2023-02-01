@@ -4,18 +4,15 @@ import 'package:uuid/uuid.dart';
 class Task extends Model {
   final String id;
   final String title;
-  bool? isDone;
-  bool? isDeleted;
+  final bool isDone;
+  final bool isDeleted;
 
   Task({
     required this.id,
     required this.title,
     this.isDone = false,
     this.isDeleted = false,
-  }) {
-    isDone = isDone ?? false;
-    isDeleted = isDeleted ?? false;
-  }
+  });
 
   Task copyWith({
     String? id,

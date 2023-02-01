@@ -2,6 +2,7 @@ import 'package:bloc_test/models/Task.dart';
 import 'package:bloc_test/modules/tasks/block/exports.dart';
 import 'package:bloc_test/modules/tasks/ui/widgets/task_form.dart';
 import 'package:bloc_test/modules/tasks/ui/widgets/tasks_list.dart';
+import 'package:bloc_test/modules/theme_switcher/ui/widgets/ThemeSwitchButton.dart';
 import 'package:bloc_test/widgets/drawer/drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -33,7 +34,7 @@ class TasksScreen extends StatelessWidget {
               IconButton(
                 onPressed: () => _showAddTaskForm(context),
                 icon: const Icon(Icons.add),
-              )
+              ),
             ],
           ),
           body: Column(

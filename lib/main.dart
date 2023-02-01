@@ -1,4 +1,5 @@
 import 'package:bloc_test/modules/tasks/ui/tasks_screen.dart';
+import 'package:bloc_test/modules/theme_switcher/block/exports.dart';
 import 'package:bloc_test/services/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:bloc_test/modules/tasks/block/exports.dart';
@@ -19,15 +20,33 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => TasksBloc(),
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        onGenerateRoute: appRouter.onGenerateRoute,
-        home: const TasksScreen(),
+    return MultiBlocProvider(
+      // create: (context) => TasksBloc(),
+      providers: [
+        BlocProvider(create: (context) => TasksBloc()),
+        BlocProvider(create: (context) => ThemeSwitcherBloc()),
+      ],
+      child: BlocBuilder<ThemeSwitcherBloc, ThemeSwitcherState>(
+        builder: (context, state) {
+          return MaterialApp(
+            title: 'Todos',
+
+            ///Theme properties
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
+            ),
+            themeMode: state.themeMode,
+            darkTheme: ThemeData.dark(),
+
+            /// Hide debug banner
+            debugShowCheckedModeBanner: false,
+
+            /// Route properties
+            onGenerateRoute: appRouter.onGenerateRoute,
+
+            home: const TasksScreen(),
+          );
+        },
       ),
     );
   }

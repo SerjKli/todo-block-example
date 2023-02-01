@@ -31,7 +31,7 @@ class TasksBloc extends HydratedBloc<TasksEvent, TasksState> {
     List<Task> allTasks = _replaceTask(
       List.from(state.allTasks),
       task,
-      task.copyWith(isDone: !task.isDone!),
+      task.copyWith(isDone: !task.isDone),
     );
 
     emit(TasksState(allTasks: allTasks));
@@ -43,11 +43,11 @@ class TasksBloc extends HydratedBloc<TasksEvent, TasksState> {
 
     List<Task> allTasks = [];
 
-    if (task.isDeleted == true) {
-      // If the task is already deleted, permanently delete the task
+    if (task.isDeleted) {
+      /// If the task is already mark as "deleted", permanently delete the task
       allTasks = List.from(state.allTasks)..remove(task);
     } else {
-      // Otherwise, mark the task as deleted
+      /// Otherwise, mark the task as deleted
       allTasks = _replaceTask(
         List.from(state.allTasks),
         task,
@@ -72,8 +72,10 @@ class TasksBloc extends HydratedBloc<TasksEvent, TasksState> {
   }
 
   List<Task> _replaceTask(List<Task> tasks, Task task, Task replaceWith) {
+    /// Find the index of given task
     final int index = tasks.indexOf(task);
 
+    /// Replace task on the index with new task
     tasks.replaceRange(index, index + 1, [replaceWith]);
 
     return tasks;

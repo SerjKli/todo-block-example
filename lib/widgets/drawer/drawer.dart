@@ -1,11 +1,32 @@
 import 'package:bloc_test/modules/bin/ui/bin_screen.dart';
+import 'package:bloc_test/modules/tasks/block/exports.dart';
 import 'package:bloc_test/modules/tasks/ui/tasks_screen.dart';
+import 'package:bloc_test/modules/theme_switcher/ui/widgets/ThemeSwitchButton.dart';
 import 'package:flutter/material.dart';
-
-import '../../modules/tasks/block/exports.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({Key? key}) : super(key: key);
+
+  /// Go to route
+  ///
+  /// BuildContext context
+  /// List<String> routesToCheck - the list of routes. If current route exists in this list, just
+  /// close the drawer
+  /// String route - route to go
+  void _goTo(BuildContext context, List<String> routesToCheck, String route) {
+
+    final navigator = Navigator.of(context);
+
+    /// Close drawer first
+    navigator.pop();
+
+    /// Check if current route is the same we want to go. If yes, nothing to do
+    if (!routesToCheck.contains(ModalRoute.of(context)?.settings.name)) {
+      //TODO: don't push navigator if previous route equals the given one, make pop instead. This will
+      // prevent big stack
+      navigator.pushNamed(route);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +57,7 @@ class AppDrawer extends StatelessWidget {
                       "${state.doneTasks}/${state.tasksCount}",
                       style: const TextStyle(color: Colors.white70),
                     ),
-                    onTap: () {
-                      Navigator.of(context).pushNamed(TasksScreen.routeName);
-                    },
+                    onTap: () => _goTo(context, [TasksScreen.routeName, '/'], TasksScreen.routeName),
                   ),
                   ListTile(
                     leading: const Icon(Icons.delete, color: Colors.white70),
@@ -47,10 +66,10 @@ class AppDrawer extends StatelessWidget {
                       "${state.trashedTasksCount}",
                       style: const TextStyle(color: Colors.white70),
                     ),
-                    onTap: () {
-                      Navigator.of(context).pushNamed(BinScreen.routeName);
-                    },
+                    onTap: () => _goTo(context, [BinScreen.routeName], BinScreen.routeName),
                   ),
+                  const Spacer(),
+                  const ThemeSwitchButton(),
                 ],
               );
             },

@@ -48,11 +48,10 @@ class TaskTile extends StatelessWidget {
         title: Text(
           task.title,
           style: TextStyle(
-            decoration: task.isDone! ? TextDecoration.lineThrough : TextDecoration.none,
+            decoration: task.isDone ? TextDecoration.lineThrough : TextDecoration.none,
           ),
         ),
         trailing: _buildTrailing(context),
-        // onLongPress: () => context.read<TasksBloc>().add(DeleteTask(task: task)),
       ),
     );
   }

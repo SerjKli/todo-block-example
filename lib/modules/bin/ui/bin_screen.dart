@@ -17,10 +17,10 @@ class BinScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Deleted tasks'),
         actions: [
-          IconButton(
-            onPressed: () => {},
-            icon: const Icon(Icons.add),
-          )
+          // IconButton(
+          //   onPressed: () => {},
+          //   icon: const Icon(Icons.add),
+          // )
         ],
       ),
       body: Column(
