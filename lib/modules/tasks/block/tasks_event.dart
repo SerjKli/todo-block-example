@@ -17,10 +17,10 @@ class AddTask extends TasksEvent {
   List<Object> get props => [task];
 }
 
-class UpdateTask extends TasksEvent {
+class ChangeDoneStatusTask extends TasksEvent {
   final Task task;
 
-  const UpdateTask({required this.task});
+  const ChangeDoneStatusTask({required this.task});
 
   @override
   List<Object> get props => [task];

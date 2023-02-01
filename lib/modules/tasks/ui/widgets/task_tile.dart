@@ -22,7 +22,7 @@ class TaskTile extends StatelessWidget {
       return Checkbox(
         value: task.isDone,
         onChanged: (value) {
-          context.read<TasksBloc>().add(UpdateTask(task: task));
+          context.read<TasksBloc>().add(ChangeDoneStatusTask(task: task));
         },
       );
     }
