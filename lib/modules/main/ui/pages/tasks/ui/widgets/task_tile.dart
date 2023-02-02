@@ -1,5 +1,5 @@
 import 'package:bloc_test/models/Task.dart';
-import 'package:bloc_test/modules/tasks/block/exports.dart';
+import 'package:bloc_test/modules/main/ui/pages/tasks/block/exports.dart';
 import 'package:flutter/material.dart';
 
 class TaskTile extends StatelessWidget {

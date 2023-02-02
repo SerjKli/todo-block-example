@@ -1,5 +1,6 @@
 import 'package:bloc_test/models/Task.dart';
-import 'package:bloc_test/modules/tasks/ui/widgets/task_tile.dart';
+import 'package:bloc_test/modules/main/ui/pages/tasks/ui/widgets/task_tile.dart';
+
 import 'package:flutter/material.dart';
 
 class TasksList extends StatelessWidget {

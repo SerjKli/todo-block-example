@@ -1,13 +1,13 @@
 import 'package:bloc_test/modules/bin/ui/bin_screen.dart';
-import 'package:bloc_test/modules/tasks/ui/tasks_screen.dart';
+import 'package:bloc_test/modules/main/ui/main_screen.dart';
 import 'package:flutter/material.dart';
 
 class AppRouter {
   Route? onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
-      case TasksScreen.routeName:
+      case MainScreen.routeName:
         return MaterialPageRoute(
-          builder: (context) => const TasksScreen(),
+          builder: (context) => const MainScreen(),
           settings: routeSettings,
         );
       case BinScreen.routeName:

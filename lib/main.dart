@@ -1,8 +1,9 @@
-import 'package:bloc_test/modules/tasks/ui/tasks_screen.dart';
+import 'package:bloc_test/modules/bottom_navigation/block/bottom_navigation_bloc.dart';
+import 'package:bloc_test/modules/main/ui/main_screen.dart';
+import 'package:bloc_test/modules/main/ui/pages/tasks/block/exports.dart';
 import 'package:bloc_test/modules/theme_switcher/block/exports.dart';
 import 'package:bloc_test/services/app_router.dart';
 import 'package:flutter/material.dart';
-import 'package:bloc_test/modules/tasks/block/exports.dart';
 import 'package:path_provider/path_provider.dart';
 
 void main() async {
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => TasksBloc()),
         BlocProvider(create: (context) => ThemeSwitcherBloc()),
+        BlocProvider(create: (context) => BottomNavigationBloc()),
       ],
       child: BlocBuilder<ThemeSwitcherBloc, ThemeSwitcherState>(
         builder: (context, state) {
@@ -44,7 +46,8 @@ class MyApp extends StatelessWidget {
             /// Route properties
             onGenerateRoute: appRouter.onGenerateRoute,
 
-            home: const TasksScreen(),
+            home: const MainScreen(),
+
           );
         },
       ),

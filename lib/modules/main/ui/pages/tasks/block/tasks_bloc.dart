@@ -18,9 +18,7 @@ class TasksBloc extends HydratedBloc<TasksEvent, TasksState> {
     final state = this.state;
 
     emit(
-      TasksState(
-        allTasks: List.from(state.allTasks)..add(event.task),
-      ),
+      TasksState(allTasks: List.from(state.allTasks)..add(event.task)),
     );
   }
 

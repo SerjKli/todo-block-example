@@ -1,4 +1,3 @@
-import 'package:bloc_test/modules/tasks/block/exports.dart';
 import 'package:bloc_test/modules/theme_switcher/block/exports.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';

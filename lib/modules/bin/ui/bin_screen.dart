@@ -1,6 +1,5 @@
-import 'package:bloc_test/modules/tasks/block/exports.dart';
-import 'package:bloc_test/modules/tasks/block/tasks_bloc.dart';
-import 'package:bloc_test/modules/tasks/ui/widgets/tasks_list.dart';
+import 'package:bloc_test/modules/main/ui/pages/tasks/block/exports.dart';
+import 'package:bloc_test/modules/main/ui/pages/tasks/ui/widgets/tasks_list.dart';
 import 'package:bloc_test/widgets/drawer/drawer.dart';
 import 'package:flutter/material.dart';
 
