@@ -8,11 +8,12 @@ class TasksState extends Equatable {
     this.allTasks = const <Task>[],
   });
 
-  List<Task> get trashedTasks => allTasks.where((task) => task.isDeleted == true).toList();
-  List<Task> get activeTasks => allTasks.where((element) => element.isDeleted == false).toList();
+  List<Task> get trashedTasks => [...allTasks.where((task) => task.isDeleted == true).toList()];
+  List<Task> get activeTasks => [...allTasks.where((element) => element.isDeleted == false).toList()];
 
   int get tasksCount => activeTasks.length;
-  int get doneTasks => activeTasks.where((element) => element.isDone!).length;
+  int get doneTasks => activeTasks.where((element) => element.isDone).length;
+  int get notDoneActiveTasks => tasksCount - doneTasks;
   int get trashedTasksCount => trashedTasks.length;
 
   @override

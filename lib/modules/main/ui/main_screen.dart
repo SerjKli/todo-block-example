@@ -12,6 +12,9 @@ class MainScreen extends StatelessWidget {
   const MainScreen({Key? key}) : super(key: key);
 
   _showAddTaskForm(BuildContext context) {
+    /// Move to the first page with tasks list
+    context.read<BottomNavigationBloc>().add(const ChangeTabIndexEvent(newIndex: 0));
+
     showModalBottomSheet(
       context: context,
       builder: (context) {

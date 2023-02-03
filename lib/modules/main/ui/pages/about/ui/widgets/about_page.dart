@@ -5,12 +5,11 @@ class AboutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        children: const [
-          Text('Basic Tasks app'),
-        ],
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: const [
+        Text('Basic Tasks app with Bloc as a state management system'),
+      ],
     );
   }
 }

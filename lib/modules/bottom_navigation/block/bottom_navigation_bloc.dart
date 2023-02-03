@@ -11,8 +11,10 @@ class BottomNavigationBloc extends HydratedBloc<BottomNavigationEvent, BottomNav
   }
 
   _changeTabIndex(ChangeTabIndexEvent event, Emitter<BottomNavigationState> emit) {
-    debugPrint("ready to change. current state = ${state.toMap()}, new index = ${event.newIndex}");
-    emit(BottomNavigationState(tabIndex: event.newIndex));
+    /// No need to update state, if this is the same page
+    if(event.newIndex != state.tabIndex) {
+      emit(BottomNavigationState(tabIndex: event.newIndex));
+    }
   }
 
   @override

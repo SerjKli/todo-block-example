@@ -14,17 +14,19 @@ class TasksPage extends StatelessWidget {
       builder: (context, state) {
         List<Task> tasksList = state.activeTasks;
 
+        tasksList.sort((a, b) => a.isDone ? 1 : -1);
+
         return Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Center(
               child: Chip(
                 label: Text(
-                  "(${state.doneTasks}/${state.tasksCount}) Tasks: ",
+                  "(${state.notDoneActiveTasks}) Tasks: ",
                 ),
               ),
             ),
-            TasksList(tasksList: tasksList),
+            TasksList(tasksList: tasksList, separate: true,),
           ],
         );
       },
