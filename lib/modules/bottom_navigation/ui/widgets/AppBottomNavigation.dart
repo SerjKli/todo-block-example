@@ -9,6 +9,7 @@ class AppBottomNavigation extends StatelessWidget {
     return BlocBuilder<BottomNavigationBloc, BottomNavigationState>(
       builder: (context, state) {
         return BottomNavigationBar(
+          currentIndex: state.tabIndex,
           onTap: (tabIndex) => context.read<BottomNavigationBloc>().add(
                 ChangeTabIndexEvent(newIndex: tabIndex),
               ),
@@ -16,6 +17,7 @@ class AppBottomNavigation extends StatelessWidget {
             BottomNavigationBarItem(
               icon: Icon(Icons.checklist),
               label: "All tasks",
+
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.question_mark),

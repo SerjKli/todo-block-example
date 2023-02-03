@@ -22,6 +22,8 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final PageController controller = PageController(initialPage: 0);
+
     return Scaffold(
       drawer: const AppDrawer(),
       appBar: AppBar(
@@ -33,19 +35,21 @@ class MainScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: BlocBuilder<BottomNavigationBloc, BottomNavigationState>(
-        builder: (context, state) {
-          return PageView(
-            controller: state.controller,
-            onPageChanged: (tabIndex){
-              debugPrint("selected tab = $tabIndex");
-            },
-            children: const [
-              TasksPage(),
-              AboutPage(),
-            ],
+      body: BlocListener<BottomNavigationBloc, BottomNavigationState>(
+        listener: (context, state) {
+          controller.animateToPage(
+            state.tabIndex,
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeIn,
           );
         },
+        child: PageView(
+          controller: controller,
+          children: const [
+            TasksPage(),
+            AboutPage(),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _showAddTaskForm(context),

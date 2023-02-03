@@ -1,10 +1,10 @@
 part of 'bottom_navigation_bloc.dart';
 
 class BottomNavigationState {
-  final PageController controller;
+  final int tabIndex;
 
   BottomNavigationState({
-    this.controller = Page
+    this.tabIndex = 0
   });
 
 
