@@ -4,7 +4,6 @@ import 'package:bloc_test/widgets/drawer/drawer.dart';
 import 'package:flutter/material.dart';
 
 class BinScreen extends StatelessWidget {
-
   static const String routeName = "/deleted-tasks-screen";
 
   const BinScreen({Key? key}) : super(key: key);
@@ -15,24 +14,16 @@ class BinScreen extends StatelessWidget {
       drawer: const AppDrawer(),
       appBar: AppBar(
         title: const Text('Deleted tasks'),
-        actions: [
-          // IconButton(
-          //   onPressed: () => {},
-          //   icon: const Icon(Icons.add),
-          // )
-        ],
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-         const Center(
-            child: Chip(
-              label: Text("Deleted"),
-            ),
-          ),
           BlocBuilder<TasksBloc, TasksState>(
             builder: (context, state) {
-              return TasksList(tasksList: state.trashedTasks);
+              return TasksList(
+                tasksList: state.trashedTasks,
+                title: 'Deleted tasks',
+              );
             },
           ),
         ],

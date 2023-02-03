@@ -10,28 +10,36 @@ class TasksList extends StatelessWidget {
   /// If separate == true, add a widget between done and not done tasks
   final bool separate;
 
+  final String title;
+
   const TasksList({
     Key? key,
     required this.tasksList,
+    required this.title,
     this.separate = false,
   }) : super(key: key);
+
+  int get doneTasksCount => tasksList.where((element) => element.isDone == true).length;
 
   Widget _getDoneTasksSeparator(Task task) {
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 8),
-          child: Chip(
-            label: BlocBuilder<TasksBloc, TasksState>(
-              builder: (context, state) {
-                return Text("(${state.doneTasks}) Done tasks");
-              },
-            ),
-          ),
-        ),
+        Chip(label: Text("($doneTasksCount) Done tasks")),
         TaskTile(task: task),
       ],
     );
+  }
+
+  Widget _getHeader(Task task){
+    return Column(
+      children: [
+        Center(
+          child: Chip(label: Text(title)),
+        ),
+        if (!task.isDone) TaskTile(task: task),
+      ],
+    );
+
   }
 
   @override
@@ -43,6 +51,11 @@ class TasksList extends StatelessWidget {
         itemCount: tasksList.length,
         itemBuilder: (context, index) {
           final task = tasksList[index];
+
+          /// If index == 0, show title
+          if (index == 0) {
+            return _getHeader(task);
+          }
 
           if (separate && task.isDone && isFirstDone) {
             isFirstDone = false;

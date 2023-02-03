@@ -17,7 +17,10 @@ class AppBottomNavigation extends StatelessWidget {
             BottomNavigationBarItem(
               icon: Icon(Icons.checklist),
               label: "All tasks",
-
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.star),
+              label: "Important",
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.question_mark),

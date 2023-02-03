@@ -10,10 +10,14 @@ class TasksState extends Equatable {
 
   List<Task> get trashedTasks => [...allTasks.where((task) => task.isDeleted == true).toList()];
   List<Task> get activeTasks => [...allTasks.where((element) => element.isDeleted == false).toList()];
+  List<Task> get importantActiveTasks =>
+      [...activeTasks.where((element) => element.isImportant == true).toList()];
 
   int get tasksCount => activeTasks.length;
-  int get doneTasks => activeTasks.where((element) => element.isDone).length;
-  int get notDoneActiveTasks => tasksCount - doneTasks;
+  int get doneTasksCount => activeTasks.where((element) => element.isDone).length;
+  int get importantTasksCount => importantActiveTasks.length - importantDoneTasksCount;
+  int get importantDoneTasksCount => importantActiveTasks.where((element) => element.isDone).length;
+  int get notDoneActiveTasks => tasksCount - doneTasksCount;
   int get trashedTasksCount => trashedTasks.length;
 
   @override

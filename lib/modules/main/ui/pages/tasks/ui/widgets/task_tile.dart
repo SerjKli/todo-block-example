@@ -11,7 +11,7 @@ class TaskTile extends StatelessWidget {
   final Task task;
 
   Widget _buildTrailing(BuildContext context) {
-    if (task.isDeleted == true) {
+    if (task.isDeleted) {
       return TextButton(
         child: const Text('Restore'),
         onPressed: () {
@@ -45,6 +45,10 @@ class TaskTile extends StatelessWidget {
       ),
       onDismissed: (_) => context.read<TasksBloc>().add(DeleteTask(task: task)),
       child: ListTile(
+        leading: IconButton(
+          icon: Icon(task.isImportant ? Icons.star : Icons.star_border_outlined),
+          onPressed: () => context.read<TasksBloc>().add(ChangeImportantTask(task: task)),
+        ),
         title: Text(
           task.title,
           style: TextStyle(

@@ -31,7 +31,6 @@ class AppDrawer extends StatelessWidget {
       child: Drawer(
         child: Container(
           padding: const EdgeInsets.all(12),
-          color: Colors.blueAccent,
           child: BlocBuilder<TasksBloc, TasksState>(
             builder: (context, state) {
               return Column(
@@ -48,20 +47,18 @@ class AppDrawer extends StatelessWidget {
                   ),
                   const SizedBox(height: 12),
                   ListTile(
-                    leading: const Icon(Icons.home, color: Colors.white70),
-                    title: const Text('My tasks', style: TextStyle(color: Colors.white70)),
+                    leading: const Icon(Icons.home),
+                    title: const Text('My tasks'),
                     trailing: Text(
-                      "${state.doneTasks}/${state.tasksCount}",
-                      style: const TextStyle(color: Colors.white70),
+                      "${state.doneTasksCount}/${state.tasksCount}",
                     ),
                     onTap: () => _goTo(context, MainScreen.routeName),
                   ),
                   ListTile(
-                    leading: const Icon(Icons.delete, color: Colors.white70),
-                    title: const Text('Deleted tasks', style: TextStyle(color: Colors.white70)),
+                    leading: const Icon(Icons.delete),
+                    title: const Text('Deleted tasks'),
                     trailing: Text(
                       "${state.trashedTasksCount}",
-                      style: const TextStyle(color: Colors.white70),
                     ),
                     onTap: () => _goTo(context, BinScreen.routeName),
                   ),

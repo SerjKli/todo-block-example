@@ -1,6 +1,7 @@
 import 'package:bloc_test/modules/bottom_navigation/block/exports.dart';
 import 'package:bloc_test/modules/bottom_navigation/ui/widgets/AppBottomNavigation.dart';
 import 'package:bloc_test/modules/main/ui/pages/about/ui/widgets/about_page.dart';
+import 'package:bloc_test/modules/main/ui/pages/important/ui/widgets/important_tasks_page.dart';
 import 'package:bloc_test/modules/main/ui/pages/tasks/ui/widgets/tasks_page.dart';
 import 'package:bloc_test/modules/main/ui/pages/tasks/ui/widgets/task_form.dart';
 import 'package:bloc_test/widgets/drawer/drawer.dart';
@@ -17,6 +18,7 @@ class MainScreen extends StatelessWidget {
 
     showModalBottomSheet(
       context: context,
+      isScrollControlled: true,
       builder: (context) {
         return const TaskForm();
       },
@@ -48,8 +50,12 @@ class MainScreen extends StatelessWidget {
         },
         child: PageView(
           controller: controller,
+          onPageChanged: (tabIndex){
+            context.read<BottomNavigationBloc>().add(ChangeTabIndexEvent(newIndex: tabIndex));
+          },
           children: const [
             TasksPage(),
+            ImportantTasksPage(),
             AboutPage(),
           ],
         ),
